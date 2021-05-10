@@ -46,14 +46,14 @@ namespace QLKaraoke
         private void btnDangnhap_Click(object sender, EventArgs e)
         {
             if (DangNhap(txtUser.Text, txtPasswork.Text))
-            {
-                
-              
+            {                             
                 this.Close();
             }
             else
             {
                 MessageBox.Show("Tên đăng nhập hoặc mật khẩu sai \n " + err, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtUser.Text = null;
+                txtPasswork.Text = null;
             }
         }
 
