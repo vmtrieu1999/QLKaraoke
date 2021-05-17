@@ -19,11 +19,17 @@ namespace QLKaraoke.QuanLy.DanhMuc
         }
         private Database_KaraokeDataContext db;
         private string nhanvien = "admin";
+
+        BLL_DanhMuc bd;
+        DataTable dataTable;
+        string err = string.Empty;
+
         private void FormLoaiPhong_Load(object sender, EventArgs e)
         {
             db = new Database_KaraokeDataContext();
+            bd = new BLL_DanhMuc();
             ShowData();
-
+            #region
             dgvLoaiPhong.Columns["id"].HeaderText = "Mã loại";
             dgvLoaiPhong.Columns["tenloaiphong"].HeaderText = "Tên loại phòng";
             dgvLoaiPhong.Columns["dongia"].HeaderText = "Đơn giá";
@@ -36,20 +42,24 @@ namespace QLKaraoke.QuanLy.DanhMuc
             dgvLoaiPhong.Columns["tenloaiphong"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dgvLoaiPhong.Columns["dongia"].DefaultCellStyle.Format = "N0";
-
+            #endregion
 
         }
 
         private void ShowData()
         {
-            var rs = (from l in db.LoaiPhongs
+            dataTable = new DataTable();
+            dataTable = bd.LayDanhSachLoaiPhong(ref err);
+            #region
+            /*var rs = (from l in db.LoaiPhongs
                       select new
                       {
                           l.ID,
                           l.TenLoaiPhong,
                           l.DonGia
-                      });
-            dgvLoaiPhong.DataSource = rs;
+                      });*/
+            #endregion
+            dgvLoaiPhong.DataSource = dataTable;
 
         }
 

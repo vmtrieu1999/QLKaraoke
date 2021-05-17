@@ -20,16 +20,22 @@ namespace QLKaraoke.QuanLy.DanhMuc
         private Database_KaraokeDataContext db;
         private string nhanvien = "admin";
         private DataGridViewRow r;
+
+        BLL_DanhMuc bd;
+        DataTable dataTable;
+        string err = string.Empty;
         private void FormMatHang_Load(object sender, EventArgs e)
         {
             db = new Database_KaraokeDataContext();
-
+            bd = new BLL_DanhMuc();
+            ShowData();
+            #region
             cbbMatHangGoc.DataSource = db.MatHangs.Where(x => x.IdCha == null || x.IdCha == -1);
             cbbMatHangGoc.DisplayMember = "TenMatHang";
             cbbMatHangGoc.ValueMember = "ID";
             cbbMatHangGoc.SelectedIndex = -1;
 
-            ShowData();
+            
 
             dgvMatHang.Columns["idcha"].Visible = false;
             dgvMatHang.Columns["tile"].Visible = false;
@@ -54,11 +60,16 @@ namespace QLKaraoke.QuanLy.DanhMuc
             dgvMatHang.Columns["tendvt"].HeaderText = "ĐVT";
             dgvMatHang.Columns["dongiaban"].HeaderText = "Đơn giá";
             dgvMatHang.Columns["tenmathang"].HeaderText = "Tên mặt hàng";
-
+            #endregion
         }
 
         private void ShowData()
         {
+            dataTable = new DataTable();
+            dataTable = bd.LayDanhSachMatHang(ref err);
+
+            #region
+            /*
             var rs = (from h in db.MatHangs
                       join d in db.DonViTinhs on h.IDDVT equals d.ID
                       select new
@@ -69,8 +80,9 @@ namespace QLKaraoke.QuanLy.DanhMuc
                           h.TenMatHang,
                           d.TenDVT,
                           h.DonGiaBan
-                      });
-            dgvMatHang.DataSource = rs;
+                      });*/
+            #endregion
+            dgvMatHang.DataSource = dataTable;
 
         }
 
@@ -217,8 +229,8 @@ namespace QLKaraoke.QuanLy.DanhMuc
                 }
                 else
                 {
-                    var item = db.MatHangs.SingleOrDefault(x => x.ID == int.Parse(r.Cells["idcha"].Value.ToString()));
-                    cbbMatHangGoc.Text = item.TenMatHang;
+                   // var item = db.MatHangs.SingleOrDefault(x => x.ID == int.Parse(r.Cells["idcha"].Value.ToString()));
+                   // cbbMatHangGoc.Text = item.TenMatHang;
                 }
             }
         }

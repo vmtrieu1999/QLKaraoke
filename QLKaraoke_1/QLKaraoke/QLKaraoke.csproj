@@ -73,7 +73,19 @@
     <Compile Include="QLBanHang\FormBanHang.Designer.cs">
       <DependentUpon>FormBanHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="QLBanHang\FormOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QLBanHang\FormOrder.Designer.cs">
+      <DependentUpon>FormOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="QLHeThong\BLLHeThong.cs" />
+    <Compile Include="QLThongKe-BaoCao\FormTonKho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QLThongKe-BaoCao\FormTonKho.Designer.cs">
+      <DependentUpon>FormTonKho.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuanLy\BLL_QuanLi.cs" />
     <Compile Include="QuanLy\DanhMuc\BLL_DanhMuc.cs" />
     <Compile Include="QuanLy\DanhMuc\FormChiTietHoaDonNhap.cs">
@@ -146,6 +158,12 @@
     <EmbeddedResource Include="QLBanHang\FormBanHang.resx">
       <DependentUpon>FormBanHang.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="QLBanHang\FormOrder.resx">
+      <DependentUpon>FormOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QLThongKe-BaoCao\FormTonKho.resx">
+      <DependentUpon>FormTonKho.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QuanLy\DanhMuc\FormChiTietHoaDonNhap.resx">
       <DependentUpon>FormChiTietHoaDonNhap.cs</DependentUpon>
     </EmbeddedResource>
@@ -188,14 +206,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="QLThongKe-BaoCao\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\256x256bb.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tải xuống.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

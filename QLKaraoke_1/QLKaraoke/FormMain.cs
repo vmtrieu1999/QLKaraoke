@@ -1,4 +1,5 @@
 ﻿using QLKaraoke.QLBanHang;
+using QLKaraoke.QLThongKe_BaoCao;
 using QLKaraoke.QuanLy;
 using QLKaraoke.QuanLy.DanhMuc;
 using System;
@@ -98,6 +99,12 @@ namespace QLKaraoke
         {
             FormBanHang bhh = new FormBanHang();
             bhh.ShowDialog();
+        }
+
+        private void toolStripMenuItem13_Click(object sender, EventArgs e)
+        {
+            FormTonKho tk = new FormTonKho();
+            tk.ShowDialog();
         }
     }
 }

@@ -17,13 +17,19 @@ namespace QLKaraoke.QuanLy.DanhMuc
         {
             InitializeComponent();
         }
+        BLL_DanhMuc bd;
         private Database_KaraokeDataContext db;
         private string nhanvien = "admin";
+        DataTable dataTable;
+        string err = string.Empty;
+
         private void FormPhong_Load(object sender, EventArgs e)
         {
             db = new Database_KaraokeDataContext();
+            
+            bd = new BLL_DanhMuc();
             ShowData();
-
+            #region
             //đổ dữ liệu cbbLoaiPhong
             cbbLoaiPhong.DataSource = db.LoaiPhongs;
             cbbLoaiPhong.DisplayMember = "tenloaiphong";
@@ -47,13 +53,16 @@ namespace QLKaraoke.QuanLy.DanhMuc
             dgvPhong.Columns["succhua"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvPhong.Columns["dongia"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvPhong.Columns["dongia"].DefaultCellStyle.Format = "N0";
-
+            #endregion
 
         }
 
         private void ShowData()
         {
-            var rs = (from p in db.Phongs
+            dataTable = new DataTable();
+            dataTable = bd.LayDanhSachPhong(ref err);
+            #region
+            /*var rs = (from p in db.Phongs
                       join l in db.LoaiPhongs on p.IDLoaiPhong equals l.ID
                       select new
                       {
@@ -62,8 +71,9 @@ namespace QLKaraoke.QuanLy.DanhMuc
                           p.TenPhong,
                           l.DonGia,
                           p.SucChua
-                      });
-            dgvPhong.DataSource = rs;
+                      });*/
+            #endregion
+            dgvPhong.DataSource = dataTable;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -195,6 +205,11 @@ namespace QLKaraoke.QuanLy.DanhMuc
                     MessageBox.Show("Xóa loại phòng thất bại ", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

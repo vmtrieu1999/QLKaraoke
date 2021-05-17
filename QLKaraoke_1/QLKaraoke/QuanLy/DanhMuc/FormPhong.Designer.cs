@@ -100,6 +100,7 @@
             this.label2.Size = new System.Drawing.Size(156, 25);
             this.label2.TabIndex = 20;
             this.label2.Text = "Quản Lí Phòng";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // btnSave
             // 

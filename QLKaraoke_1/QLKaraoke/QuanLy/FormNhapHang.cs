@@ -35,7 +35,7 @@ namespace QLKaraoke.QuanLy
         {
             db = new Database_KaraokeDataContext();
             ShowData();
-
+            #region
             mtbNgayNhap.Text = DateTime.Now.ToString("dd/MM/yyyy");
             cbbNhanVienNhap.DataSource = db.NhanViens;
             cbbNhanVienNhap.DisplayMember = "hovaten";
@@ -69,7 +69,7 @@ namespace QLKaraoke.QuanLy
 
             dgvHoaDonNhap.Columns["tongtien"].DefaultCellStyle.Format = "N0";
             dgvHoaDonNhap.Columns["dathanhtoan"].DefaultCellStyle.Format = "N0";
-
+            #endregion
         }
 
         private void btnSave_Click(object sender, EventArgs e)

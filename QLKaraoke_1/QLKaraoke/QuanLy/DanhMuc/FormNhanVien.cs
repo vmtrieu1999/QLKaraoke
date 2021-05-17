@@ -19,11 +19,16 @@ namespace QLKaraoke.QuanLy.DanhMuc
         }
         private Database_KaraokeDataContext db;
         private string nhanvien = "admin";
+
+        BLL_DanhMuc bd;
+        DataTable dataTable;
+        string err = string.Empty;
         private void FormNhanVien_Load(object sender, EventArgs e)
         {
             db = new Database_KaraokeDataContext();
+            bd = new BLL_DanhMuc();
             ShowData();
-
+            #region
             dgvNhanVien.Columns["password"].Visible = false;
             dgvNhanVien.Columns["Username"].HeaderText = "Tài Khoản";
             dgvNhanVien.Columns["hovaten"].HeaderText = "Họ và Tên";
@@ -35,11 +40,13 @@ namespace QLKaraoke.QuanLy.DanhMuc
             dgvNhanVien.Columns["dienthoai"].Width = 100;
             dgvNhanVien.Columns["hovaten"].Width = 100;
             dgvNhanVien.Columns["diachi"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
+            #endregion
         }
 
         private void ShowData()
         {
+            #region
+            /*
             var rs = (from nv in db.NhanViens
                       select new
                       {
@@ -48,8 +55,11 @@ namespace QLKaraoke.QuanLy.DanhMuc
                           nv.HoVaTen,
                           nv.DienThoai,
                           nv.DiaChi
-                      });
-            dgvNhanVien.DataSource = rs;
+                      });*/
+            #endregion
+            dataTable = new DataTable();
+            dataTable = bd.LayDanhSachNhanVien(ref err);
+            dgvNhanVien.DataSource = dataTable;
         }
 
         private void btnSave_Click(object sender, EventArgs e)

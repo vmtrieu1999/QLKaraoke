@@ -26,26 +26,33 @@ namespace QLKaraoke.QuanLy.DanhMuc
         private void FormDonViTinh_Load(object sender, EventArgs e)
         {
             db = new Database_KaraokeDataContext();
+            bd = new BLL_DanhMuc();
             ShowData();
+            #region
             dgvDVT.Columns["id"].HeaderText = "Mã ĐVT";
             dgvDVT.Columns["id"].Width = 100;
             dgvDVT.Columns["id"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvDVT.Columns["TenDVT"].HeaderText = "Tên ĐVT";
             dgvDVT.Columns["TenDVT"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
+            #endregion
 
         }
 
         private void ShowData()
         {
+            #region
+            /*
             var rs = (from d in db.DonViTinhs
                       select new
                       {
                           d.ID,
                           d.TenDVT
-                      }).ToList();
-            dgvDVT.DataSource = rs;
+                      }).ToList();*/
+            #endregion
+            dataTable = new DataTable();
+            dataTable = bd.LayDanhSachDVT(ref err);
+            dgvDVT.DataSource = dataTable;
 
         }
 

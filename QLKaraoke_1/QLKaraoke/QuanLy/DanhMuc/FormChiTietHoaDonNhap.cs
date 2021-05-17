@@ -101,6 +101,7 @@ namespace QLKaraoke.QuanLy.DanhMuc
             ct.IDHoaDon = idHoaDon;
 
             var item = db.ChiTietHoaDonNhaps.FirstOrDefault(x => x.IDHoaDon == idHoaDon && x.IDMatHang == int.Parse(cbbMatHang.SelectedValue.ToString()));
+
             if (item == null)
             {
                 ct.IDMatHang = int.Parse(cbbMatHang.SelectedValue.ToString());
